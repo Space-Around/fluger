@@ -1,15 +1,14 @@
 <template>
-  <hello-world />
+  <div>
+    <h2>Fluger Content</h2>
+  </div>
 </template>
 
 <script>
-  import HelloWorld from '../components/HelloWorld'
 
   export default {
     name: 'Home',
 
-    components: {
-      HelloWorld,
-    },
+    components: {},
   }
 </script>
