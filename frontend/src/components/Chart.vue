@@ -15,7 +15,10 @@
       options() {
         return {
           chart: {
-            id: 'company information'
+            id: 'company information',
+            toolbar: {
+              show: false
+            },
           },
 
           colors: ['#1e88e5', '#ffa726'],
