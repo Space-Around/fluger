@@ -1,6 +1,6 @@
 <template>
   <div>
-    <apexchart type="line" :options="options" :series="series"></apexchart>
+    <apexchart class="chart mx-auto" type="line" :options="options" :series="series"></apexchart>
   </div>
 </template>
 
@@ -52,7 +52,7 @@
       },
       series() {
         return [{
-          name: 'Цена',
+          name: 'Среднегодовая цена акции компании',
           data: this.yAxis
         }]
       }
@@ -61,5 +61,7 @@
 </script>
 
 <style lang="scss" scoped>
-
+.chart {
+  width: 80%;
+}
 </style>
