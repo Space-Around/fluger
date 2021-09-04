@@ -4,7 +4,7 @@ import config
 
 class SQLExecuter:
     def __init__(self, path_to_db):
-        self.conn = sqlite3.connect(path_to_db)
+        self.conn = sqlite3.connect(path_to_db, check_same_thread=False)
         self.cur = self.conn.cursor()
 
     def get_companys(self):
