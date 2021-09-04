@@ -1,9 +1,10 @@
 import sqlite3
 import config
 
-class Executer:
-    def __init__(self):
-        self.conn = sqlite3.connect(config.DB_NAME)
+
+class SQLExecuter:
+    def __init__(self, path_to_db):
+        self.conn = sqlite3.connect(path_to_db)
         self.cur = self.conn.cursor()
 
     def get_companys(self):
@@ -12,13 +13,13 @@ class Executer:
                 FROM companys;
             """)
 
-        companys_raw = self.cur.fetchone()
+        companys_raw = self.cur.fetchall()
         companys = []
 
         for company_raw in companys_raw:
             companys.append({
-                "id": company_raw[0],
-                "name": company_raw[1]
+                "id": int(company_raw[0]),
+                "name": str(company_raw[1])
             })
 
         return companys
