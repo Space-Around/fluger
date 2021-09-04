@@ -1,6 +1,3 @@
-[submodule "FI"]
-	path = FI
-	url = https://github.com/spielbrecher/FI
 [submodule "backend/FI"]
 	path = backend/FI
-	url = https://github.com/spielbrecher/FI
+	url = https://github.com/Space-Around/FI.git
