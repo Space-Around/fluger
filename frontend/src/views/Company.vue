@@ -1,6 +1,5 @@
 <template>
   <div class="company">
-    <chart :x-axis="years" :y-axis="prices"/>
     <v-card class="my-6">
       <v-simple-table>
         <template v-slot:default>
@@ -26,6 +25,14 @@
         </template>
       </v-simple-table>
     </v-card>
+    <v-btn
+      color="primary"
+      large
+      tile
+      @click="showChart = !showChart"
+      class="my-6 mx-auto d-block"
+    >{{ showChart ? 'Скрыть' : 'Показать' }} график</v-btn>
+    <chart v-if="showChart" :x-axis="years" :y-axis="prices"/>
   </div>
 </template>
 
@@ -58,7 +65,8 @@ export default {
           year: 2025,
           price: 774.11914828
         },
-      ]
+      ],
+      showChart: false
     }
   },
   components: {

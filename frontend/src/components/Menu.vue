@@ -46,11 +46,10 @@
       </v-tooltip>
     </div>
     <div v-if="showMenu" class="d-flex menu-right pa-4">
-      <h3>Header</h3>
+      <h3>Акции компаний</h3>
       <ul class="d-flex list">
-        <li><router-link to="/company" class="link">One</router-link></li>
-        <li><router-link to="/company" class="link">Two</router-link></li>
-        <li><router-link to="/company" class="link">Three</router-link></li>
+        <li @click="goTo('company')" class="link">Татнефть</li>
+        <li @click="goTo('company')" class="link">Газпромнефть</li>
       </ul>
     </div>
   </div>
@@ -67,15 +66,22 @@ export default {
     clickIcon() {
       this.showMenu = !this.showMenu;
     },
+    goTo(link) {
+      this.showMenu = false;
+      this.$router.push("/" + link);
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
 .menu {
-  position: absolute;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
   flex-direction: columns;
-  height: 100%;
+  height: 100vh;
 }
 .list {
   padding-left: 0;
