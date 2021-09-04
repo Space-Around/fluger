@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import appMenu from "./components/Menu.vue"
+import appMenu from "./components/menu/Menu.vue"
 
 export default {
   name: 'App',
@@ -38,5 +38,8 @@ export default {
       url('~@/assets/fonts/Golos-UI/Golos-UI_Regular.woff2') format('woff2');
     font-weight: 100;
     font-style: normal;
+  }
+  .pointer {
+    cursor: pointer;
   }
 </style>
