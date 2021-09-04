@@ -45,9 +45,9 @@
         <span>Компании</span>
       </v-tooltip>
     </div>
-    <div v-if="showMenu" class="d-flex menu-right pa-4">
+    <div v-if="showMenu" class="d-flex menu-right pt-4">
       <h3>Акции компаний</h3>
-      <ul class="d-flex list">
+      <ul class="d-flex list pt-3">
         <li @click="goTo('company')" class="link">Татнефть</li>
         <li @click="goTo('company')" class="link">Газпромнефть</li>
       </ul>
@@ -106,6 +106,13 @@ export default {
   flex-direction: column;
   list-style: none;
   width: 100%;
+}
+.list li:hover {
+  cursor: pointer;
+  background-color: #dedede;
+}
+.list li {
+  padding-left: 15px;
 }
 .link {
   display: flex;
