@@ -5,14 +5,11 @@
 </template>
 
 <script>
-  import vueHighcharts from 'highcharts-vue'
-
   export default {
     props: ['x-axis', 'y-axis'],
     data() {
       return {
-        
-      }
+        }
     },
     computed: {
       options() {
@@ -20,8 +17,36 @@
           chart: {
             id: 'company information'
           },
+
+          colors: ['#1e88e5', '#ffa726'],
           xaxis: {
             categories: this.xAxis
+          },
+          grid: {
+            show: true,
+            borderColor: '#bdbdbd',
+            position: 'back',
+            xaxis: {
+              lines: {
+                show: true
+              }
+            },   
+            yaxis: {
+              lines: {
+                show: true
+              }
+            },  
+            row: {
+              colors: undefined,
+              opacity: 0.5
+            },  
+            column: {
+              colors: undefined,
+              opacity: 0.5
+            },
+          },
+          stroke: {
+            curve: 'straight',
           }
         }
       },
