@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h2>Fluger Content</h2>
   </div>
 </template>
 

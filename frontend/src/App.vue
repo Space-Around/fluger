@@ -1,16 +1,7 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="purple"
-      dark
-    >
-      <div class="d-flex align-center">
-        <h1>Fluger</h1>
-      </div>
-    </v-app-bar>
-
     <v-main>
+      <app-menu/>
       <v-container>
         <router-view/>
       </v-container>
@@ -19,14 +10,33 @@
 </template>
 
 <script>
+import appMenu from "./components/Menu.vue"
 
 export default {
   name: 'App',
 
   data() {
     return {
-      
+      activeTab: undefined,
     }
   },
+  components: {
+    appMenu
+  }
 };
 </script>
+
+<style>
+  #app {
+    min-height: 100vh;
+    font-family: 'Golos-UI', sans-serif;
+  }
+  @font-face {
+    font-family: 'Golos-UI';
+    src: local('Golos UI'), local('Golos-UI'),
+      url('~@/assets/fonts/Golos-UI/Golos-UI_Regular.woff') format('woff'),
+      url('~@/assets/fonts/Golos-UI/Golos-UI_Regular.woff2') format('woff2');
+    font-weight: 100;
+    font-style: normal;
+  }
+</style>
