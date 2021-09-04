@@ -1,5 +1,6 @@
 from typing import Optional
 from fastapi import FastAPI
+from src.db import Executer
 
 app = FastAPI()
 
@@ -13,6 +14,7 @@ def read_root():
 def read_item(item_id: int, q: Optional[str] = None):
     return {"item_id": item_id, "q": q}
 
-@app.get("/company/{company_name}")
-def read_item(item_id: int, q: Optional[str] = None):
-    return {"item_id": item_id, "q": q}
+@app.get("/companys")
+def get_companys(company_id: int, q: Optional[str] = None):
+
+    # return {"company_id": item_id, "q": q}
