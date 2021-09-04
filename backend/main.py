@@ -11,15 +11,11 @@ ex = SQLExecuter(config.DB_NAME)
 # @app.get("/")
 # def read_root():
 #     return {"Hello": "World"}
-#
-#
-# @app.get("/items/{item_id}")
-# def read_item(item_id: int, q: Optional[str] = None):
-#     return {"item_id": item_id, "q": q}
+
 
 @app.get("/analysis/{company_id}")
-def read_item(item_id: int, q: Optional[str] = None):
-    return {"item_id": item_id, "q": q}
+def read_item(company_id: int, q: Optional[str] = None):
+    return {}
 
 @app.get("/companys/")
 def get_companys():
@@ -27,4 +23,4 @@ def get_companys():
 
     json_string = json.dumps(companys)
 
-    return {"item_id": json_string}
+    return {"companys": json_string}
