@@ -9,6 +9,7 @@
             v-bind="attrs"
             v-on="on"
             class="menu-left-icon"
+            @click="clickIcon"
           >
             mdi-account-multiple
           </v-icon>
@@ -23,6 +24,7 @@
             v-on="on"
             large
             class="menu-left-icon"
+            @click="clickIcon"
           >
             mdi-account-question
           </v-icon>
