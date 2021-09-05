@@ -24,6 +24,22 @@ class SQLExecuter:
 
         return companys
 
+    def get_company_by_id(self, company_id):
+        self.cur.execute(f"""
+                SELECT *
+                FROM companys
+                WHERE company_id = {company_id};
+            """)
+
+        company_raw = self.cur.fetchone()
+
+        company = {
+            "id": int(company_raw[0]),
+            "name": str(company_raw[1]),
+            "file_name": str(company_raw[2])
+        }
+
+        return company
 
 
 
