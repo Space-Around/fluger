@@ -24,6 +24,3 @@ featuresList, predictions = modelgen.predict(model, fin, years)
 print("-------------")
 # print(type(str(predictions)))
 data = list(map(lambda x: x[0], predictions))
-print(type(json.dumps(data))
-# for el in predictions:
-#     print(el)
