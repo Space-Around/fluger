@@ -1,9 +1,9 @@
 <template>
-  <div v-if="showMenu" class="d-flex menu-right pa-4">
+  <div v-if="showMenu" class="d-flex menu-right pa-4" @mouseleave="cancel">
     <v-icon color="red darken-1" class="close" @click="cancel"
       >mdi-window-close</v-icon
     >
-    <h3 class="text-center mt-3">{{ header }}</h3>
+    <h3 class="mt-3">{{ header }}</h3>
     <slot></slot>
   </div>
 </template>
@@ -39,6 +39,9 @@ export default {
     flex-direction: column;
     list-style: none;
     width: 100%;
+  }
+  h3 {
+      font-size: 25px;
   }
 }
 </style>

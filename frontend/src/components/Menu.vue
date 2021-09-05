@@ -1,6 +1,6 @@
 <template>
   <div class="d-flex menu">
-    <div class="d-flex pa-4 menu-left">
+    <div class="d-flex pt-7 menu-left">
       <v-tooltip right>
         <template v-slot:activator="{ on, attrs }">
           <v-icon
@@ -9,7 +9,7 @@
             v-bind="attrs"
             v-on="on"
             class="menu-left-icon"
-            @click="clickIcon('Profile', 'Профиль')"
+            @mouseover="clickIcon('Profile', 'Профиль')"
           >
             mdi-account-multiple
           </v-icon>
@@ -25,6 +25,7 @@
             large
             class="menu-left-icon"
             @click="goTo('risk')"
+            @mouseover="showMenu = false"
           >
             mdi-account-question
           </v-icon>
@@ -34,12 +35,12 @@
       <v-tooltip right>
         <template v-slot:activator="{ on, attrs }">
           <v-icon
-            color="green"
+            color="blue"
             large
             v-bind="attrs"
             v-on="on"
             class="menu-left-icon"
-            @click="clickIcon('Company', 'Компании')"
+            @mouseover="clickIcon('Company', 'Компании')"
           >
             mdi-currency-usd
           </v-icon>
@@ -48,7 +49,11 @@
       </v-tooltip>
     </div>
     <transition name="fade">
-      <right-menu :header="menuTabHeader" :showMenu="showMenu" @close="showMenu = false">
+      <right-menu
+        :header="menuTabHeader"
+        :showMenu="showMenu"
+        @close="showMenu = false"
+      >
         <ul v-if="menuTabSelection == 'Company'" class="d-flex list mt-3">
           <li @click="goTo('company')" class="link py-1 pointer">Татнефть</li>
           <li @click="goTo('company')" class="link py-1 pointer">
@@ -56,8 +61,10 @@
           </li>
         </ul>
         <ul v-if="menuTabSelection == 'Profile'" class="d-flex list mt-3">
-          <li @click="goTo('profile')" class="link py-1 pointer">Настройки профиля</li>
-          <li @click="goTo('')" class="link py-1 pointer red--text text--darken-1">Выйти из аккаунта</li>
+          <li @click="goTo('profile')" class="link py-1 pointer">
+            Настройки профиля
+          </li>
+          <li @click="goTo('')" class="link py-1 pointer">Выйти из аккаунта</li>
         </ul>
       </right-menu>
     </transition>
@@ -104,17 +111,21 @@ export default {
     flex-direction: column;
     width: 70px;
     gap: 15px;
-    border-right: 2px solid #2196F3;
+    border-right: 1px solid #dfe1e2;
     position: relative;
     z-index: 1200;
+  }
+  .menu-left-icon {
+    height: 50px;
   }
   .menu-right {
     flex-direction: column;
     position: relative;
     z-index: 1100;
-    background-color: #e8e8e8;
+    background-color: white;
     width: 230px;
     overflow-y: auto;
+    border-right: 1px solid #dfe1e2;
 
     transition: transform 0.3s, opacity 0.3s;
     .close {
@@ -127,6 +138,18 @@ export default {
       flex-direction: column;
       list-style: none;
       width: 100%;
+      li {
+        border-bottom: 1px solid #dfe1e2;
+        margin-bottom: 10px;
+        height: 40px;
+        padding-left: 7px;
+      }
+      li:hover {
+        display: flex;
+        background-color: #2196f3;
+        color: white;
+        border-radius: 5px;
+      }
     }
   }
 }
