@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import appMenu from "./components/Menu.vue";
+import appMenu from "./components/menu/Menu.vue"
 
 export default {
   name: "App",
@@ -53,9 +53,6 @@ export default {
 </script>
 
 <style lang="scss"> 
-$color-pack: false;
-@import '~vuetify/src/styles/main.sass';
-
 #app {
   min-height: 100vh;
   font-family: "Golos-UI", sans-serif;

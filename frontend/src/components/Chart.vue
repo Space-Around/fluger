@@ -62,6 +62,6 @@
 
 <style lang="scss" scoped>
 .chart {
-  width: 80%;
+  width: 90%;
 }
 </style>
