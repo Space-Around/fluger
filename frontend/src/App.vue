@@ -52,7 +52,10 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss"> 
+$color-pack: false;
+@import '~vuetify/src/styles/main.sass';
+
 #app {
   min-height: 100vh;
   font-family: "Golos-UI", sans-serif;
@@ -65,12 +68,15 @@ export default {
   font-weight: 100;
   font-style: normal;
 }
- .fade-enter-active,
- .fade-leave-active {
+.fade-enter-active,
+.fade-leave-active {
   transition-duration: 0.3s;
   transition-property: opacity;
   transition-property: height, opacity;
   transition-timing-function: ease;
   overflow: hidden;
+}
+.pointer {
+  cursor: pointer;
 }
 </style>

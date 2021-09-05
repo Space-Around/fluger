@@ -9,7 +9,7 @@
             v-bind="attrs"
             v-on="on"
             class="menu-left-icon"
-            @click="clickIcon"
+            @click="clickIcon('Profile', 'Профиль')"
           >
             mdi-account-multiple
           </v-icon>
@@ -24,7 +24,7 @@
             v-on="on"
             large
             class="menu-left-icon"
-            @click="clickIcon"
+            @click="goTo('risk')"
           >
             mdi-account-question
           </v-icon>
@@ -39,7 +39,7 @@
             v-bind="attrs"
             v-on="on"
             class="menu-left-icon"
-            @click="clickIcon"
+            @click="clickIcon('Company', 'Компании')"
           >
             mdi-currency-usd
           </v-icon>
@@ -48,32 +48,41 @@
       </v-tooltip>
     </div>
     <transition name="fade">
-      <div v-if="showMenu" class="d-flex menu-right pa-4">
-        <v-icon
-          color="red darken-1"
-          class="close"
-          @click="showMenu = false"
-        >mdi-window-close</v-icon>
-        <h3 class="text-center mt-3">Акции компаний</h3>
-        <ul class="d-flex list mt-3">
+      <right-menu :header="menuTabHeader" :showMenu="showMenu" @close="showMenu = false">
+        <ul v-if="menuTabSelection == 'Company'" class="d-flex list mt-3">
           <li @click="goTo('company')" class="link py-1 pointer">Татнефть</li>
-          <li @click="goTo('company')" class="link py-1 pointer">Газпромнефть</li>
+          <li @click="goTo('company')" class="link py-1 pointer">
+            Газпромнефть
+          </li>
         </ul>
-      </div>
+        <ul v-if="menuTabSelection == 'Profile'" class="d-flex list mt-3">
+          <li @click="goTo('profile')" class="link py-1 pointer">Настройки профиля</li>
+          <li @click="goTo('')" class="link py-1 pointer red--text text--darken-1">Выйти из аккаунта</li>
+        </ul>
+      </right-menu>
     </transition>
   </div>
 </template>
 
 <script>
+import rightMenu from "./RightMenu.vue";
+
 export default {
   data() {
     return {
       showMenu: false,
+      menuTabSelection: "",
+      menuTabHeader: "",
     };
   },
+  components: {
+    rightMenu,
+  },
   methods: {
-    clickIcon() {
-      this.showMenu = !this.showMenu;
+    clickIcon(menuTabName, menuTabHeader) {
+      this.showMenu = true;
+      this.menuTabSelection = menuTabName;
+      this.menuTabHeader = menuTabHeader;
     },
     goTo(link) {
       this.showMenu = false;
@@ -95,7 +104,7 @@ export default {
     flex-direction: column;
     width: 70px;
     gap: 15px;
-
+    border-right: 2px solid #2196F3;
     position: relative;
     z-index: 1200;
   }
@@ -112,7 +121,6 @@ export default {
       position: absolute;
       top: 8px;
       right: 8px;
-
     }
     .list {
       padding-left: 0;
@@ -123,7 +131,8 @@ export default {
   }
 }
 
-.fade-enter, .fade-leave-to {
+.fade-enter,
+.fade-leave-to {
   opacity: 0;
   transform: translateX(-20px);
 }
