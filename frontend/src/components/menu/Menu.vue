@@ -10,7 +10,6 @@
             v-on="on"
             class="menu-left-icon"
             @mouseover="clickIcon('Profile', 'Профиль')"
-            @mouseleave="showMenu = false"
           >
             mdi-account-multiple
           </v-icon>
@@ -42,7 +41,6 @@
             v-on="on"
             class="menu-left-icon"
             @mouseover="clickIcon('Company', 'Компании')"
-            @mouseleave="showMenu = false"
           >
             mdi-currency-usd
           </v-icon>

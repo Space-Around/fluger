@@ -3,7 +3,7 @@
     <v-icon color="red darken-1" class="close" @click="cancel"
       >mdi-window-close</v-icon
     >
-    <h3 class="mt-3">{{ header }}</h3>
+    <h3 class="mt-3 pl-2">{{ header }}</h3>
     <slot></slot>
   </div>
 </template>
