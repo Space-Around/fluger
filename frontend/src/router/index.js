@@ -13,6 +13,21 @@ const routes = [
     path: '/company',
     name: 'Company',
     component: () => import('../views/Company.vue')
+  },
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: () => import('../views/Profile.vue')
+  },
+  {
+    path: '/risk',
+    name: 'RiskProfile',
+    component: () => import('../views/RiskProfile.vue')
+  },
+  {
+    path: '*',
+    name: 'Error',
+    component: () => import('../views/Error.vue')
   }
 ]
 
