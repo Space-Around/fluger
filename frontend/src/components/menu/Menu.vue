@@ -1,6 +1,6 @@
 <template>
   <div class="d-flex menu">
-    <div class="d-flex pa-4 menu-left">
+    <div class="d-flex pt-7 menu-left">
       <v-tooltip right>
         <template v-slot:activator="{ on, attrs }">
           <v-icon
@@ -9,7 +9,7 @@
             v-bind="attrs"
             v-on="on"
             class="menu-left-icon"
-            @click="clickIcon"
+            @mouseover="clickIcon('Profile', 'Профиль')"
           >
             mdi-account-multiple
           </v-icon>
@@ -24,7 +24,8 @@
             v-on="on"
             large
             class="menu-left-icon"
-            @click="clickIcon"
+            @click="goTo('risk')"
+            @mouseover="showMenu = false"
           >
             mdi-account-question
           </v-icon>
@@ -34,12 +35,12 @@
       <v-tooltip right>
         <template v-slot:activator="{ on, attrs }">
           <v-icon
-            color="green"
+            color="blue"
             large
             v-bind="attrs"
             v-on="on"
             class="menu-left-icon"
-            @click="clickIcon"
+            @mouseover="clickIcon('Company', 'Компании')"
           >
             mdi-currency-usd
           </v-icon>
@@ -47,43 +48,48 @@
         <span>Компании</span>
       </v-tooltip>
     </div>
-<<<<<<< HEAD:frontend/src/components/Menu.vue
-    <div v-if="showMenu" class="d-flex menu-right pt-4">
-      <h3>Акции компаний</h3>
-      <ul class="d-flex list pt-3">
-        <li @click="goTo('company')" class="link">Татнефть</li>
-        <li @click="goTo('company')" class="link">Газпромнефть</li>
-      </ul>
-    </div>
-=======
     <transition name="fade">
-      <div v-if="showMenu" class="d-flex menu-right pa-4">
-        <v-icon
-          color="red darken-1"
-          class="close"
-          @click="showMenu = false"
-        >mdi-window-close</v-icon>
-        <h3 class="text-center mt-3">Акции компаний</h3>
-        <ul class="d-flex list">
+      <right-menu
+        :header="menuTabHeader"
+        :showMenu="showMenu"
+        @close="showMenu = false"
+      >
+        <ul v-if="menuTabSelection == 'Company'" class="d-flex list mt-3">
           <li @click="goTo('company')" class="link py-1 pointer">Татнефть</li>
-          <li @click="goTo('company')" class="link py-1 pointer">Газпромнефть</li>
+          <li @click="goTo('company')" class="link py-1 pointer">
+            Газпромнефть
+          </li>
         </ul>
-      </div>
+        <ul v-if="menuTabSelection == 'Profile'" class="d-flex list mt-3">
+          <li @click="goTo('profile')" class="link py-1 pointer">
+            Настройки профиля
+          </li>
+          <li @click="goTo('')" class="link py-1 pointer">Выйти из аккаунта</li>
+        </ul>
+      </right-menu>
     </transition>
->>>>>>> 42383dd3285932cf100f038ee15dd237b4fdd6f6:frontend/src/components/menu/Menu.vue
   </div>
 </template>
 
 <script>
+import rightMenu from "./RightMenu.vue";
+
 export default {
   data() {
     return {
       showMenu: false,
+      menuTabSelection: "",
+      menuTabHeader: "",
     };
   },
+  components: {
+    rightMenu,
+  },
   methods: {
-    clickIcon() {
-      this.showMenu = !this.showMenu;
+    clickIcon(menuTabName, menuTabHeader) {
+      this.showMenu = true;
+      this.menuTabSelection = menuTabName;
+      this.menuTabHeader = menuTabHeader;
     },
     goTo(link) {
       this.showMenu = false;
@@ -105,78 +111,52 @@ export default {
     flex-direction: column;
     width: 70px;
     gap: 15px;
-
+    border-right: 1px solid #dfe1e2;
     position: relative;
     z-index: 1200;
+  }
+  .menu-left-icon {
+    height: 50px;
   }
   .menu-right {
     flex-direction: column;
     position: relative;
     z-index: 1100;
-    background-color: #e8e8e8;
+    background-color: white;
     width: 230px;
     overflow-y: auto;
+    border-right: 1px solid #dfe1e2;
 
     transition: transform 0.3s, opacity 0.3s;
     .close {
       position: absolute;
       top: 8px;
       right: 8px;
-
     }
     .list {
       padding-left: 0;
       flex-direction: column;
       list-style: none;
       width: 100%;
+      li {
+        border-bottom: 1px solid #dfe1e2;
+        margin-bottom: 10px;
+        height: 40px;
+        padding-left: 7px;
+      }
+      li:hover {
+        display: flex;
+        background-color: #2196f3;
+        color: white;
+        border-radius: 5px;
+      }
     }
   }
 }
-<<<<<<< HEAD:frontend/src/components/Menu.vue
-.list {
-  padding-left: 0;
-}
-.menu-left {
-  flex-direction: column;
-  width: 70px;
-}
-.menu-left-icon {
-  margin-bottom: 15px;
-}
-.menu-right {
-  background-color: #e8e8e8;
-  flex-direction: column;
-  width: 230px;
-  overflow-y: auto;
-}
-.menu-right h3 {
-  text-align: center;
-}
-.menu-right ul {
-  flex-direction: column;
-  list-style: none;
-  width: 100%;
-}
-.list li:hover {
-  cursor: pointer;
-  background-color: #dedede;
-}
-.list li {
-  padding-left: 15px;
-}
-.link {
-  display: flex;
-  align-items: center;
-  color: black;
-  text-decoration: none;
-  width: 100%;
-  height: 35px;
-  margin-bottom: 10px;
-=======
 
-.fade-enter, .fade-leave-to {
+.fade-enter,
+.fade-leave-to {
   opacity: 0;
   transform: translateX(-20px);
->>>>>>> 42383dd3285932cf100f038ee15dd237b4fdd6f6:frontend/src/components/menu/Menu.vue
 }
 </style>
