@@ -40,6 +40,9 @@
 import chart from "../components/Chart.vue"
 
 export default {
+  components: {
+    chart
+  },
   data() {
     return {
       name: '',
@@ -68,9 +71,6 @@ export default {
       ],
       showChart: false
     }
-  },
-  components: {
-    chart,
   },
   created() {
     
