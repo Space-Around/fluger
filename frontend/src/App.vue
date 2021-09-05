@@ -55,7 +55,10 @@ export default {
 <style lang="scss"> 
 #app {
   min-height: 100vh;
-  font-family: "Golos-UI", sans-serif;
+  font-family: "Golos-UI", sans-serif !important;
+}
+.header {
+  font-family: "Golos-UI";
 }
 @font-face {
   font-family: "Golos-UI";

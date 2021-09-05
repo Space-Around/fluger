@@ -55,8 +55,8 @@
         @close="showMenu = false"
       >
         <ul v-if="menuTabSelection == 'Company'" class="d-flex list mt-3">
-          <li @click="goTo('company')" class="link py-1 pointer">Татнефть</li>
-          <li @click="goTo('company')" class="link py-1 pointer">
+          <li @click="pushCompany('Татнефть')" class="link py-1 pointer">Татнефть</li>
+          <li @click="pushCompany('Газпромнефть')" class="link py-1 pointer">
             Газпромнефть
           </li>
         </ul>
@@ -73,6 +73,7 @@
 
 <script>
 import rightMenu from "./RightMenu.vue";
+import { mapMutations } from "vuex";
 
 export default {
   data() {
@@ -86,15 +87,24 @@ export default {
     rightMenu,
   },
   methods: {
+    ...mapMutations(['setCompanyName']),
     clickIcon(menuTabName, menuTabHeader) {
       this.showMenu = true;
       this.menuTabSelection = menuTabName;
       this.menuTabHeader = menuTabHeader;
+      if (this.menuTabName === 'Company') {
+        this.setCompanyName()
+      }
     },
     goTo(link) {
       this.showMenu = false;
       this.$router.push("/" + link);
     },
+    pushCompany(name) {
+      this.showMenu = false;
+      this.setCompanyName(name)
+      this.$router.push("/company");
+    }
   },
 };
 </script>

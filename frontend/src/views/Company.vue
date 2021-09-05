@@ -1,5 +1,6 @@
 <template>
   <div class="company">
+    <h1 class="text-center text-h2 header">{{ name }}</h1>
     <v-card class="my-6">
       <v-simple-table>
         <template v-slot:default>
@@ -38,6 +39,7 @@
 
 <script>
 import chart from "../components/Chart.vue"
+import { mapState } from "vuex"
 
 export default {
   components: {
@@ -45,7 +47,6 @@ export default {
   },
   data() {
     return {
-      name: '',
       metaInfo: {},
       predictionsData: [
         {
@@ -79,12 +80,16 @@ export default {
     
   },
   computed: {
+    ...mapState({
+      name: state => state.companyName
+    }),
     years() {
       return this.predictionsData.map(obj => obj.year)
     },
     prices() {
       return this.predictionsData.map(obj => Number(obj.price.toFixed(2)))
-    }
+    },
+    
   },
 }
 </script>
